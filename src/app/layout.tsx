@@ -60,7 +60,7 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={`${inter.variable} ${geistMono.variable} min-h-screen bg-black font-sans text-foreground antialiased`}>
         <JsonLd data={personJsonLd} />
-        <div className="mx-auto flex min-h-screen w-full max-w-[1232px] flex-col overflow-hidden border-x border-border-muted bg-canvas shadow-elevated sm:my-6 sm:min-h-[calc(100vh-3rem)] sm:rounded-xl sm:border">
+        <div className="mx-auto flex min-h-screen w-full max-w-[1232px] flex-col overflow-visible border-x border-border-muted bg-canvas shadow-elevated sm:my-6 sm:min-h-[calc(100vh-3rem)] sm:rounded-xl sm:border">
           <SiteHeader />
           <main className="flex-1">{children}</main>
           <SiteFooter />

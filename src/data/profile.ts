@@ -13,8 +13,10 @@ export const profile: Profile = {
   title: "Computer Science & Engineering Student",
   introduction:
     "I build practical software and hardware-focused solutions across embedded systems, IoT, Flutter, and artificial intelligence.",
-  summary:
-    "Md Imran Hasan Shuvo is a Computer Science & Engineering student at AIUB with a strong academic record and a practical engineering mindset. His work sits at the intersection of software, connected devices, mobile experiences, and intelligent systems.",
+  summary: [
+    "I am a Computer Science and Engineering student with a strong interest in the Internet of Things (IoT), embedded systems, and artificial intelligence. I enjoy learning how intelligent hardware and software can work together to solve practical problems and improve everyday life.",
+    "I am a curious and adaptable learner with strong problem-solving, teamwork, and technical skills. I am continuously expanding my knowledge of modern technologies and aim to build a career where I can contribute to innovative, reliable, and intelligent engineering solutions."
+  ],
   careerObjective:
     "To grow as an engineer who can design reliable embedded and IoT systems, build polished Flutter applications, and apply artificial intelligence to solve useful real-world problems with clean, maintainable software.",
   roles: [

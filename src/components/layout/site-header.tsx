@@ -1,51 +1,43 @@
 import Link from "next/link";
 import { Moon } from "lucide-react";
 
-import { LogoMark } from "@/components/shared/logo-mark";
 import { navigation } from "@/data/navigation";
 import { headerContent } from "@/data/sections";
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-40 bg-canvas/95">
-      <div className="container flex h-16 items-center justify-center gap-3 border-b border-border-muted">
-        <LogoMark />
-        <p className="text-lg font-semibold text-foreground sm:text-2xl">
-          {headerContent.styleTitle}
-        </p>
-      </div>
-
-      <div className="container flex h-14 items-center justify-between border-b border-border-muted">
+    <header className="sticky top-0 z-40 border-b border-border-muted bg-canvas/95 shadow-card shadow-line">
+      <div className="container relative grid gap-1.5 py-1.5 md:flex md:h-14 md:items-center md:gap-4 md:py-0">
         <Link
           href="#home"
-          className="rounded-md font-mono text-lg font-semibold text-accent transition hover:text-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
+          className="shrink-0 rounded-md font-mono text-base font-semibold text-accent transition hover:text-accent-hover focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas sm:text-lg"
           aria-label="Md Imran Hasan Shuvo home"
         >
           {headerContent.logoText}
         </Link>
 
+        <a
+          href="#contact"
+          className="absolute right-4 top-2 flex size-9 shrink-0 items-center justify-center rounded-md text-foreground-muted transition hover:bg-surface-inset hover:text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas md:static"
+          aria-label={headerContent.contactLabel}
+        >
+          <Moon className="size-4" aria-hidden="true" />
+        </a>
+
         <nav
           aria-label={headerContent.mainNavLabel}
-          className="hidden items-center gap-5 md:flex"
+          className="grid min-w-0 grid-cols-4 gap-1 pt-1 md:flex md:flex-1 md:items-center md:justify-center md:gap-4 md:overflow-visible md:pt-0 lg:gap-5"
         >
           {navigation.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-1 py-2 text-xs font-medium text-foreground-muted transition hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
+              className="flex min-h-6 items-center justify-center rounded-md px-1 text-[10px] font-medium leading-4 text-foreground-muted transition hover:bg-surface-inset hover:text-accent focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas sm:text-xs md:min-h-0 md:px-1 md:py-2"
             >
               {item.label}
             </Link>
           ))}
         </nav>
-
-        <a
-          href="#contact"
-          className="flex size-9 items-center justify-center rounded-md text-foreground-muted transition hover:bg-surface-inset hover:text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
-          aria-label={headerContent.contactLabel}
-        >
-          <Moon className="size-4" aria-hidden="true" />
-        </a>
       </div>
     </header>
   );

@@ -1,15 +1,18 @@
 import Image from "next/image";
-import { ArrowUpRight, Bluetooth, CheckCircle2, Github, RadioTower } from "lucide-react";
+import { ArrowUpRight, CheckCircle2, FileText, Github, PlayCircle, RadioTower } from "lucide-react";
 
 import { projectCardContent } from "@/data/sections";
-import type { Project, ProjectGalleryImage } from "@/features/portfolio/types";
+import { ProjectGallery } from "@/features/portfolio/components/project-gallery";
+import { ProjectVideoPreview } from "@/features/portfolio/components/project-video-preview";
+import type { Project } from "@/features/portfolio/types";
 import { withBasePath } from "@/lib/paths";
 import { cn } from "@/lib/utils";
 
-const imageAspectStyles: Record<ProjectGalleryImage["orientation"], string> = {
-  landscape: "aspect-[16/10]",
-  portrait: "aspect-[9/16]"
-};
+const placeholderRepositoryUrl = "https://github.com/";
+
+function getActionHref(href: string) {
+  return href.startsWith("/") ? withBasePath(href) : href;
+}
 
 type ProjectSpotlightProps = {
   project: Project;
@@ -20,6 +23,21 @@ export function ProjectSpotlight({ project }: ProjectSpotlightProps) {
     return null;
   }
 
+  const hasRepository = project.githubUrl !== placeholderRepositoryUrl;
+  const heroImage = (
+    <Image
+      src={withBasePath(project.image.src)}
+      alt={project.image.alt}
+      width={1600}
+      height={1200}
+      sizes="(min-width: 1024px) 42vw, 100vw"
+      className={cn(
+        "aspect-[4/3] w-full bg-surface-inset",
+        project.image.fit === "contain" ? "object-contain" : "object-cover"
+      )}
+    />
+  );
+
   return (
     <article
       id={project.slug}
@@ -29,7 +47,7 @@ export function ProjectSpotlight({ project }: ProjectSpotlightProps) {
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(20rem,0.72fr)] lg:items-start">
         <div>
           <div className="inline-flex items-center gap-2 rounded-md border border-success/25 bg-success-muted/25 px-3 py-1.5 text-xs font-medium text-success">
-            <Bluetooth className="size-3.5" aria-hidden="true" />
+            <RadioTower className="size-3.5" aria-hidden="true" />
             {project.spotlight.eyebrow}
           </div>
 
@@ -59,31 +77,65 @@ export function ProjectSpotlight({ project }: ProjectSpotlightProps) {
           </div>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-accent/30 bg-canvas-elevated px-4 text-sm font-medium text-foreground transition hover:border-accent/50 hover:bg-surface-inset focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
-            >
-              <Github className="size-4" aria-hidden="true" />
-              {project.spotlight.repositoryLabel}
-              <ArrowUpRight className="size-4" aria-hidden="true" />
-            </a>
-            <span className="text-xs text-foreground-subtle">
-              {project.spotlight.documentationLabel}
-            </span>
+            {hasRepository ? (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-accent/30 bg-canvas-elevated px-4 text-sm font-medium text-foreground transition hover:border-accent/50 hover:bg-surface-inset focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
+              >
+                <Github className="size-4" aria-hidden="true" />
+                {project.spotlight.repositoryLabel}
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </a>
+            ) : null}
+
+            {project.spotlight.documentationUrl ? (
+              <a
+                href={getActionHref(project.spotlight.documentationUrl)}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-border-muted bg-surface-card px-4 text-sm font-medium text-foreground transition hover:border-accent/40 hover:bg-surface-inset focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
+              >
+                <FileText className="size-4" aria-hidden="true" />
+                {project.spotlight.documentationLabel}
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </a>
+            ) : null}
+
+            {project.spotlight.videoUrl ? (
+              <a
+                href={getActionHref(project.spotlight.videoUrl)}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-md border border-success/30 bg-success-muted/25 px-4 text-sm font-medium text-foreground transition hover:border-success/45 hover:bg-success-muted/35 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-canvas"
+              >
+                <PlayCircle className="size-4" aria-hidden="true" />
+                {project.spotlight.videoLabel ?? "Watch Project Video"}
+                <ArrowUpRight className="size-4" aria-hidden="true" />
+              </a>
+            ) : null}
+
+            {!project.spotlight.documentationUrl && !project.spotlight.videoUrl ? (
+              <span className="text-xs text-foreground-subtle">
+                {project.spotlight.documentationLabel}
+              </span>
+            ) : null}
           </div>
         </div>
 
         <figure className="overflow-hidden rounded-xl border border-border-muted bg-surface-inset shadow-card shadow-line">
-          <Image
-            src={withBasePath(project.image.src)}
-            alt={project.image.alt}
-            width={1600}
-            height={1200}
-            sizes="(min-width: 1024px) 42vw, 100vw"
-            className="aspect-[4/3] w-full object-cover"
-          />
+          {project.videoPreview ? (
+            <ProjectVideoPreview
+              embedUrl={project.videoPreview.embedUrl}
+              title={project.videoPreview.title}
+              mode="always"
+            >
+              {heroImage}
+            </ProjectVideoPreview>
+          ) : (
+            heroImage
+          )}
         </figure>
       </div>
 
@@ -122,7 +174,7 @@ export function ProjectSpotlight({ project }: ProjectSpotlightProps) {
               <RadioTower className="size-5" aria-hidden="true" />
             </div>
             <h4 id={`${project.slug}-protocol`} className="text-base font-semibold text-foreground">
-              {projectCardContent.spotlightLabels.protocol}
+              {project.spotlight.protocolTitle ?? projectCardContent.spotlightLabels.protocol}
             </h4>
           </div>
 
@@ -136,35 +188,11 @@ export function ProjectSpotlight({ project }: ProjectSpotlightProps) {
           </dl>
         </section>
 
-        <section aria-labelledby={`${project.slug}-gallery`}>
-          <h4 id={`${project.slug}-gallery`} className="text-base font-semibold text-foreground">
-            {projectCardContent.spotlightLabels.gallery}
-          </h4>
-
-          <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-            {project.spotlight.gallery.map((image) => (
-              <figure
-                key={image.src}
-                className="overflow-hidden rounded-xl border border-border-muted bg-surface-card/80 shadow-card shadow-line"
-              >
-                <Image
-                  src={withBasePath(image.src)}
-                  alt={image.alt}
-                  width={900}
-                  height={1200}
-                  sizes="(min-width: 1280px) 248px, (min-width: 640px) 50vw, 100vw"
-                  className={cn(
-                    "w-full bg-surface-inset object-cover",
-                    imageAspectStyles[image.orientation]
-                  )}
-                />
-                <figcaption className="border-t border-border-muted px-3 py-2 text-xs font-medium text-foreground-muted">
-                  {image.caption}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-        </section>
+        <ProjectGallery
+          gallery={project.spotlight.gallery}
+          projectSlug={project.slug}
+          title={project.spotlight.galleryTitle ?? projectCardContent.spotlightLabels.gallery}
+        />
       </div>
     </article>
   );

@@ -28,19 +28,5 @@ export const labProjects = [
       "Investigating node-to-node communication, local device discovery, and resilient control behavior across connected devices.",
     focus: "Connected Devices",
     tools: ["BLE", "Mesh", "IoT"]
-  },
-  {
-    title: "Edge AI",
-    description:
-      "Studying how inference can run closer to sensors for faster decisions, lower latency, and privacy-aware systems.",
-    focus: "On-device Inference",
-    tools: ["Edge AI", "Sensors", "Optimization"]
-  },
-  {
-    title: "TinyML",
-    description:
-      "Experimenting with compact models, embedded inference constraints, and practical AI workflows for microcontrollers.",
-    focus: "Microcontroller AI",
-    tools: ["TinyML", "TensorFlow Lite", "MCU"]
   }
 ] satisfies LabProject[];

@@ -45,8 +45,7 @@ export const educationTimeline = [
     result: "GPA 4.67/5.00",
     highlights: [
       "Secondary School Certificate",
-      "Junior School Certificate GPA 4.95/5.00",
-      "Primary Education Completion certificate"
+      "Junior School Certificate GPA 4.95/5.00"
     ],
     image: {
       src: "/images/education/elenga-high-school.png",

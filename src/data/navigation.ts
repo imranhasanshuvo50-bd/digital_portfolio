@@ -19,7 +19,11 @@ export const navigation = [
   },
   {
     label: "Skills",
-    href: "#lab"
+    href: "#skills"
+  },
+  {
+    label: "Experience",
+    href: "#experience"
   },
   {
     label: "Achievements",

@@ -12,6 +12,16 @@ export const certificates = [
     downloadUrl: "/images/certificates/deans-list-honors.png"
   },
   {
+    title: "IT Essentials: PC Hardware and Software",
+    issuer: "Cisco Networking Academy",
+    issueDate: "23 June 2024",
+    thumbnail: {
+      src: "/images/certificates/cisco-it-essentials-certificate.png",
+      alt: "Cisco Networking Academy IT Essentials PC Hardware and Software certificate"
+    },
+    downloadUrl: "/documents/certificates/cisco-it-essentials-certificate.pdf"
+  },
+  {
     title: "Higher Secondary Certificate Examination",
     issuer: "Board of Intermediate and Secondary Education, Dhaka",
     issueDate: "30 January 2021",

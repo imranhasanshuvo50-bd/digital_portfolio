@@ -37,9 +37,11 @@ export function AboutSection() {
             <h2 className="border-l-2 border-accent pl-3 text-2xl font-semibold text-foreground">
               {aboutSectionContent.eyebrow}
             </h2>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-foreground-muted">
-              {profile.summary}
-            </p>
+            <div className="mt-5 grid max-w-2xl gap-4 text-sm leading-7 text-foreground-muted">
+              {profile.summary.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </div>
 
           <div className="grid gap-3 rounded-xl border border-border-muted bg-surface-card/80 p-5 shadow-card shadow-line">

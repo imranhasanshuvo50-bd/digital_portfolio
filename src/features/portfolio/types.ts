@@ -24,7 +24,7 @@ export type Profile = {
   name: string;
   title: string;
   introduction: string;
-  summary: string;
+  summary: string[];
   careerObjective: string;
   roles: string[];
   education: Education;
@@ -51,13 +51,15 @@ export type ProjectStatus =
   | "In Progress"
   | "Completed"
   | "Research"
-  | "Personal Build";
+  | "Personal Build"
+  | "Course Project";
 
 export type ProjectGalleryImage = {
   src: string;
   alt: string;
   caption: string;
   orientation: "landscape" | "portrait";
+  fit?: "cover" | "contain";
 };
 
 export type ProjectFeatureGroup = {
@@ -75,15 +77,25 @@ export type ProjectProtocolCommand = {
   purpose: string;
 };
 
+export type ProjectVideoPreview = {
+  embedUrl: string;
+  title: string;
+};
+
 export type ProjectSpotlight = {
   eyebrow: string;
   title: string;
   summary: string;
   repositoryLabel: string;
   documentationLabel: string;
+  documentationUrl?: string;
+  videoLabel?: string;
+  videoUrl?: string;
   stats: ProjectStat[];
   featureGroups: ProjectFeatureGroup[];
+  protocolTitle?: string;
   protocol: ProjectProtocolCommand[];
+  galleryTitle?: string;
   gallery: ProjectGalleryImage[];
 };
 
@@ -94,11 +106,13 @@ export type Project = {
   image: {
     src: string;
     alt: string;
+    fit?: "cover" | "contain";
   };
   techStack: string[];
   status: ProjectStatus;
   githubUrl: string;
   detailsUrl: string;
+  videoPreview?: ProjectVideoPreview;
   spotlight?: ProjectSpotlight;
 };
 
@@ -107,6 +121,19 @@ export type LabProject = {
   description: string;
   focus: string;
   tools: string[];
+};
+
+export type SkillGroup = {
+  title: string;
+  skills: string[];
+};
+
+export type ExperienceItem = {
+  title: string;
+  period: string;
+  category: string;
+  summary: string;
+  highlights: string[];
 };
 
 export type Certificate = {

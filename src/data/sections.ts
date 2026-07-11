@@ -36,11 +36,20 @@ export const educationSectionContent = {
   highlightsLabel: "Highlights"
 };
 
+export const skillsSectionContent = {
+  eyebrow: "Skills",
+  title: "Technical and soft skills.",
+  description:
+    "A clear snapshot of hands-on engineering tools, programming experience, development workflow, and collaboration strengths.",
+  technicalTitle: "Technical Skills",
+  softTitle: "Soft Skills"
+};
+
 export const featuredProjectsSectionContent = {
   eyebrow: "Featured Projects",
   title: "Practical builds across embedded systems, IoT, software, and electronics.",
   description:
-    "A curated set of engineering projects designed to show technical range, problem-solving ability, and hands-on implementation experience.",
+    "Engineering projects that show technical range, problem-solving ability, and hands-on implementation experience.",
   viewAllLabel: "View all projects"
 };
 
@@ -51,7 +60,9 @@ export const projectCardContent = {
     overview: "Overview",
     source: "Source",
     protocol: "BLE Commands",
-    gallery: "Implementation & App Views"
+    gallery: "Implementation & App Views",
+    viewImage: "View details",
+    closePreview: "Close preview"
   }
 };
 
@@ -60,7 +71,7 @@ export const engineeringLabSectionContent = {
   eyebrow: "Engineering Lab",
   title: "Ongoing experiments where ideas turn into working systems.",
   description:
-    "This section highlights research threads and active engineering work beyond finished portfolio projects. It shows curiosity, technical direction, and the systems Shuvo is currently exploring.",
+    "Current research threads and active engineering work beyond finished portfolio projects, focused on practical systems, technical depth, and continuous experimentation.",
   researchMode: {
     title: "Research Mode",
     description: "Building, testing, measuring, iterating."
@@ -68,11 +79,19 @@ export const engineeringLabSectionContent = {
   cardStatusLabel: "WIP"
 };
 
+export const experienceSectionContent = {
+  eyebrow: "Relevant Experience",
+  title: "Practical software quality and developer operations experience.",
+  description:
+    "Hands-on experience in application testing, issue reporting, release support, and Apple Developer account operations.",
+  currentLabel: "Current"
+};
+
 export const achievementsSectionContent = {
   eyebrow: "Achievements & Certifications",
   title: "Academic excellence backed by a growing certification archive.",
   description:
-    "A recruiter-friendly record of recognitions, certificates, and professional learning milestones.",
+    "Recognitions, certificates, and professional learning milestones.",
   highlight: {
     badge: "Top Highlight",
     title: "Dean's List Honors",
@@ -107,7 +126,6 @@ export const footerContent = {
 export const headerContent = {
   mainNavLabel: "Main navigation",
   contactLabel: "Contact",
-  styleTitle: "Dark Developer Style",
   logoText: "<Shuvo/>"
 };
 

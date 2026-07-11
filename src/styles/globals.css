@@ -107,7 +107,13 @@
   /* Layout */
   --container-content: 72rem;
   --container-readable: 44rem;
-  --header-height: 4rem;
+  --header-height: 5.75rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-height: 3.5rem;
+  }
 }
 
 * {

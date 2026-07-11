@@ -2,10 +2,8 @@ import {
   Activity,
   Bot,
   Boxes,
-  BrainCircuit,
   Cpu,
   FlaskConical,
-  Network,
   RadioTower
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -19,9 +17,7 @@ const labIcons: Record<string, LucideIcon> = {
   "Scalable Home Automation": Boxes,
   "AI Pet Robot": Bot,
   "ESP32 Experiments": Cpu,
-  "Bluetooth Mesh": RadioTower,
-  "Edge AI": BrainCircuit,
-  TinyML: Network
+  "Bluetooth Mesh": RadioTower
 };
 
 export function EngineeringLabSection() {
