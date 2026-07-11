@@ -26,7 +26,7 @@ export const navigation = [
     href: "#experience"
   },
   {
-    label: "Achievements",
+    label: "Certificates",
     href: "#certificates"
   },
   {
